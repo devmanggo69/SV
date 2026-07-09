@@ -1,0 +1,51 @@
+# Ignore compiled output
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Ignore video files (too large for GitHub)
+Assets/*.mp4
+Assets/*.avi
+Assets/*.mkv
+Assets/*.mov
+Assets/*.wmv
+!Assets/README.md
+
+# Ignore user-specific files
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+
+# Ignore IDE files
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Ignore NuGet
+.nuget/
+packages/
+*.nupkg
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio cache
+.vs/
+
+# Rider cache
+.idea/
+*.sln.iml
