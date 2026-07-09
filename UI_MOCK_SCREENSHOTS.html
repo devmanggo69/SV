@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Mock Screenshots - Ragnarok Patcher & Joke Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .screenshot {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .screenshot:hover {
+            transform: translateY(-10px);
+        }
+        
+        .screenshot-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .screenshot-content {
+            padding: 0;
+            background: #f5f5f5;
+        }
+        
+        /* ============ LOGIN FORM ============ */
+        .login-form {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 350px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .login-title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .status-message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #10b981;
+            font-weight: 500;
+        }
+        
+        /* ============ PATCHER FORM ============ */
+        .patcher-form {
+            width: 100%;
+            aspect-ratio: 6/5;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            color: white;
+            font-size: 13px;
+        }
+        
+        .patcher-title {
+            text-align: center;
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #60a5fa;
+        }
+        
+        .control-panel {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .control-label {
+            font-weight: 600;
+            color: #d1d5db;
+        }
+        
+        .control-select {
+            padding: 6px 12px;
+            border: 1px solid #4b5563;
+            background: #374151;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .video-area {
+            background: #000;
+            border: 2px solid #4b5563;
+            border-radius: 8px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 2em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(96, 165, 250, 0.1) 50%, transparent 70%);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .video-text {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .progress-container {
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 24px;
+            background: #374151;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #4b5563;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 45%;
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .status-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3b82f6;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .status-icon {
+            display: inline-block;
+            margin-right: 6px;
+        }
+        
+        .status-success {
+            color: #10b981;
+        }
+        
+        .status-loading {
+            color: #60a5fa;
+        }
+        
+        .version-info {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 12px;
+        }
+        
+        .button-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .btn-patch {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .btn-launch {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        /* ============ JOKE GENERATOR ============ */
+        .joke-form {
+            width: 100%;
+            aspect-ratio: 7/5;
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            color: #1e293b;
+            font-size: 13px;
+        }
+        
+        .joke-title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+        
+        .joke-controls {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .joke-select {
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #1e293b;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        
+        .btn-joke {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        
+        .btn-copy {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        
+        .btn-share {
+            background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        
+        .joke-display {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 12px;
+            min-height: 120px;
+            font-size: 14px;
+            line-height: 1.8;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .joke-setup {
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 12px;
+        }
+        
+        .joke-punchline {
+            color: #16a34a;
+            font-weight: 500;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .joke-meta {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+        
+        .joke-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 12px;
+        }
+        
+        .stat-item {
+            padding: 8px;
+            background: #f0f9ff;
+            border-left: 3px solid #0066cc;
+            border-radius: 4px;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            margin-bottom: 2px;
+        }
+        
+        .stat-value {
+            color: #0066cc;
+            font-weight: 600;
+        }
+        
+        .description {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .description h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .description ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .description li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .description li:last-child {
+            border-bottom: none;
+        }
+        
+        .description li::before {
+            content: '✓ ';
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 UI Mock Screenshots - Ragnarok Patcher & Joke Generator</h1>
+        
+        <div class="screenshots-grid">
+            <!-- LOGIN FORM -->
+            <div class="screenshot">
+                <div class="screenshot-title">🔐 Login Form</div>
+                <div class="screenshot-content">
+                    <div class="login-form">
+                        <div class="login-container">
+                            <div class="login-title">🔒 Ragnarok</div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Username:</label>
+                                <input type="text" class="form-input" value="admin" readonly>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Password:</label>
+                                <input type="password" class="form-input" value="admin123" readonly>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button class="btn btn-primary">Login</button>
+                                <button class="btn btn-success">Register</button>
+                            </div>
+                            
+                            <div class="status-message">✅ Login successful!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PATCHER FORM -->
+            <div class="screenshot">
+                <div class="screenshot-title">⚙️ Patcher Form</div>
+                <div class="screenshot-content">
+                    <div class="patcher-form">
+                        <div class="patcher-title">🎮 Ragnarok - Patcher</div>
+                        
+                        <div class="control-panel">
+                            <span class="control-label">Category:</span>
+                            <select class="control-select">
+                                <option>General</option>
+                                <option>Programming</option>
+                            </select>
+                        </div>
+                        
+                        <div class="video-area">
+                            <div class="video-text">🎬 VIDEO</div>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill">45%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="status-info">
+                            <span class="status-icon status-loading">⏳</span>
+                            Downloading patches...
+                        </div>
+                        
+                        <div class="version-info">
+                            Current: 0 | Latest: 3
+                        </div>
+                        
+                        <div class="button-row">
+                            <button class="btn-patch">Download Patches</button>
+                            <button class="btn-launch">Launch Game</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- JOKE GENERATOR -->
+            <div class="screenshot">
+                <div class="screenshot-title">😂 Joke Generator</div>
+                <div class="screenshot-content">
+                    <div class="joke-form">
+                        <div class="joke-title">😂 Random Joke 😂</div>
+                        
+                        <div class="joke-controls">
+                            <select class="joke-select">
+                                <option>General</option>
+                                <option>Programming</option>
+                                <option>Knock-Knock</option>
+                            </select>
+                            <button class="btn-joke">Get Joke</button>
+                            <button class="btn-copy">Copy</button>
+                            <button class="btn-share">Share</button>
+                        </div>
+                        
+                        <div class="joke-display">
+                            <div class="joke-setup">
+                                Setup: Why do programmers prefer dark mode?
+                            </div>
+                            <div class="joke-punchline">
+                                Punchline: Because light attracts bugs! 🐛
+                            </div>
+                            <div class="joke-meta">
+                                [Type: programming]
+                            </div>
+                        </div>
+                        
+                        <div class="joke-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Jokes Loaded</div>
+                                <div class="stat-value">5</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Status</div>
+                                <div class="stat-value" style="color: #16a34a;">✅ Ready</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="description">
+            <h3>📋 Features Overview</h3>
+            <ul>
+                <li><strong>Login Form:</strong> Clean blue gradient design with username/password input</li>
+                <li><strong>Patcher Form:</strong> Dark theme with progress bar and video loading area</li>
+                <li><strong>Joke Generator:</strong> Light theme with category selector and joke display</li>
+                <li><strong>Color Scheme:</strong> Professional gradients and intuitive UI</li>
+                <li><strong>Responsive:</strong> Buttons and controls properly aligned</li>
+                <li><strong>Status Indicators:</strong> Real-time feedback with colors (green=success, blue=loading, red=error)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
